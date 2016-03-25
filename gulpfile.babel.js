@@ -29,6 +29,12 @@ gulp.task('default', ['test']);
 // test code
 gulp.task('test', ['build']);
 
+// watch code and automatically transpile
+gulp.task('watch', ['build'], () => {
+  gulp.watch(PATHS.app.src, ['babel:app']);
+  gulp.watch(PATHS.test.src, ['babel:test']);
+});
+
 // build generator by transpiling es6 code and moving templates
 gulp.task('build', ['babel'], () =>
   gulp.src([PATHS.templates.src])
