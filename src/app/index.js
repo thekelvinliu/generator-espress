@@ -9,6 +9,7 @@ class MyGenerator extends Base {
     super(...args);
     slug.defaults.mode = 'rfc3986';
   }
+
   get prompting() {
     return {
       projectName() {
@@ -17,10 +18,9 @@ class MyGenerator extends Base {
           type: 'input',
           name: 'projectName',
           message: 'Enter the name of your project:',
-          default: slug(this.appname)
+          default: 'name-of-your-project'
         }, res => {
           this.options.projectName = slug(res.projectName);
-          this.log(this.options.projectName);
           done();
         });
       }
