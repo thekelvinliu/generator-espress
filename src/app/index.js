@@ -23,6 +23,19 @@ class MyGenerator extends Base {
           this.options.projectName = slug(res.projectName);
           done();
         });
+      },
+
+      destDir() {
+        const done = this.async();
+        this.prompt({
+          type: 'input',
+          name: 'destDir',
+          message: 'Enter the name of your destination folder:',
+          default: 'build'
+        }, res => {
+          this.options.destDir = slug(res.destDir);
+          done();
+        });
       }
     };
   }
