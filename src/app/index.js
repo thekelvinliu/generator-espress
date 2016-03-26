@@ -1,30 +1,34 @@
 'use strict';
 
-import path from 'path';
+// import path from 'path';
 import { Base } from 'yeoman-generator';
+import slug from 'slug';
 
 class MyGenerator extends Base {
   constructor(...args) {
     super(...args);
-    this.argument('appName', {
-      type: String,
-      defaults: path.basename(process.cwd())
-    });
+    slug.defaults.mode = 'rfc3986';
   }
-
-  initializing() {
-    console.log('init');
-  }
-
   get prompting() {
     return {
-      one() {
-        console.log('one');
-      },
-      two() {
-        console.log('two');
+      projectName() {
+        const done = this.async();
+        this.prompt({
+          type: 'input',
+          name: 'projectName',
+          message: 'Enter the name of your project:',
+          default: slug(this.appname)
+        }, res => {
+          this.options.projectName = slug(res.projectName);
+          this.log(this.options.projectName);
+          done();
+        });
       }
     };
+  }
+
+  end() {
+    this.log(`${this.options.projectName} is set up and ready to go!`);
   }
 }
 
