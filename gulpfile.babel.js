@@ -33,13 +33,11 @@ gulp.task('test', ['build']);
 gulp.task('watch', ['build'], () => {
   gulp.watch(PATHS.app.src, ['babel:app']);
   gulp.watch(PATHS.test.src, ['babel:test']);
+  gulp.watch(PATHS.templates.src, ['templates']);
 });
 
 // build generator by transpiling es6 code and moving templates
-gulp.task('build', ['babel'], () =>
-  gulp.src([PATHS.templates.src])
-    .pipe(gulp.dest(PATHS.templates.dest))
-);
+gulp.task('build', ['babel', 'templates']);
 
 // returns a function that lints code
 const lintTask = (obj) =>
@@ -65,6 +63,12 @@ const babelTask = (obj) =>
 gulp.task('babel', ['babel:app', 'babel:test']);
 gulp.task('babel:app', ['lint:app'], babelTask(PATHS.app));
 gulp.task('babel:test', ['lint:test'], babelTask(PATHS.test));
+
+// move templates
+gulp.task('templates', () =>
+  gulp.src([PATHS.templates.src])
+    .pipe(gulp.dest(PATHS.templates.dest))
+);
 
 // cleanup directory
 gulp.task('clean', ['clean:app', 'clean:test'])
