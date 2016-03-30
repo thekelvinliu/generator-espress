@@ -2,17 +2,19 @@
   "name": "generator-es6-express",
   "version": "0.0.1",
   "description": "an opinionated yeoman generator that scaffolds a mvc webapp powered by express",
-  "main": "app/index.js",
-  "directories": {
-    "test": "test"
-  },
-  "scripts": {
-    "test": "gulp test"
-  },
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/thekelvinliu/generator-es6-express.git"
   },
+  "author": "thekelvinliu",
+  "main": "app/index.js",
+  "scripts": {
+    "test": "gulp test"
+  },
+  "files": [
+    "app"
+  ],
   "keywords": [
     "babel",
     "bower",
@@ -26,13 +28,8 @@
     "sass",
     "yeoman-generator"
   ],
-  "author": "thekelvinliu",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/thekelvinliu/generator-es6-express/issues"
-  },
-  "homepage": "https://github.com/thekelvinliu/generator-es6-express#readme",
   "dependencies": {
+    "path-exists": "^2.1.0",
     "yeoman-generator": "^0.22.5"
   },
   "devDependencies": {
