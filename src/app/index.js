@@ -46,6 +46,28 @@ class MyGenerator extends Base {
 
   get writing() {
     return {
+      babelrc() {
+        this.fs.copyTpl(
+          this.templatePath('babelrc'),
+          this.destinationPath('.babelrc')
+        );
+      },
+      bowerJson() {
+        this.fs.copyTpl(
+          this.templatePath('_bower.json'),
+          this.destinationPath('bower.json'),
+          {
+            projectName: this.options.projectName,
+            description: this.options.description
+          }
+        );
+      },
+      eslintJson() {
+        this.fs.copyTpl(
+          this.templatePath('eslintrc.json'),
+          this.destinationPath('.eslintrc.json')
+        );
+      },
       packageJson() {
         this.fs.copyTpl(
           this.templatePath('_package.json'),
@@ -54,17 +76,6 @@ class MyGenerator extends Base {
             projectName: this.options.projectName,
             description: this.options.description,
             githubName: this.options.githubName
-          }
-        );
-      },
-
-      bowerJson() {
-        this.fs.copyTpl(
-          this.templatePath('_bower.json'),
-          this.destinationPath('bower.json'),
-          {
-            projectName: this.options.projectName,
-            description: this.options.description
           }
         );
       }
