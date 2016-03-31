@@ -37,7 +37,7 @@ class MyGenerator extends Base {
       this.options.projectName = slug(res.projectName);
       const dir = path.join('.', this.options.projectName);
       if (!pathExists.sync(dir)) this.destinationRoot(dir);
-      else this.env.error(`${this.options.projectName} already exists.`);
+      else this.env.error(`the directory '${this.options.projectName}' already exists!`);
       this.options.description = res.description;
       this.options.githubName = res.githubName;
       this.options.buildDir = slug(res.buildDir);
@@ -47,13 +47,22 @@ class MyGenerator extends Base {
 
   get writing() {
     return {
-      babelrc() {
+      configs() {
         this.fs.copy(
           this.templatePath('babelrc'),
           this.destinationPath('.babelrc')
         );
-      },
-      bowerJson() {
+        this.fs.copy(
+          this.templatePath('eslintrc.json'),
+          this.destinationPath('.eslintrc.json')
+        );
+        this.fs.copyTpl(
+          this.templatePath('gitignore'),
+          this.destinationPath('.gitignore'),
+          {
+            buildDir: this.options.buildDir
+          }
+        );
         this.fs.copyTpl(
           this.templatePath('_bower.json'),
           this.destinationPath('bower.json'),
@@ -62,20 +71,13 @@ class MyGenerator extends Base {
             description: this.options.description
           }
         );
-      },
-      eslintJson() {
-        this.fs.copy(
-          this.templatePath('eslintrc.json'),
-          this.destinationPath('.eslintrc.json')
+        this.fs.copyTpl(
+          this.templatePath('_gulpfile.babel.js'),
+          this.destinationPath('gulpfile.babel.js'),
+          {
+            buildDir: this.options.buildDir
+          }
         );
-      },
-      gitignore() {
-        this.fs.copy(
-          this.templatePath('gitignore'),
-          this.destinationPath('.gitignore')
-        )
-      },
-      packageJson() {
         this.fs.copyTpl(
           this.templatePath('_package.json'),
           this.destinationPath('package.json'),
@@ -85,12 +87,18 @@ class MyGenerator extends Base {
             githubName: this.options.githubName
           }
         );
+      },
+      app() {
       }
     };
   }
 
+  install() {
+    // this.installDependencies();
+  }
+
   end() {
-    this.log(`${this.options.projectName} is set up and ready to go!`);
+    this.log(`'${this.options.projectName}' is all set up and ready to go!`);
   }
 }
 
