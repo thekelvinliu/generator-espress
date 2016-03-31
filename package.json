@@ -29,7 +29,9 @@
     "yeoman-generator"
   ],
   "dependencies": {
+    "mkdirp": "^0.5.1",
     "path-exists": "^2.1.0",
+    "simple-git": "^1.31.0",
     "yeoman-generator": "^0.22.5"
   },
   "devDependencies": {
