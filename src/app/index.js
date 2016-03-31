@@ -146,7 +146,7 @@ class MyGenerator extends Base {
   }
 
   install() {
-    // this.installDependencies();
+    this.installDependencies();
   }
 
   end() {
