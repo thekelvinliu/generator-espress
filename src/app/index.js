@@ -2,7 +2,7 @@
 
 import path from 'path';
 import { Base } from 'yeoman-generator';
-// import mkdirp from 'mkdirp';
+import mkdirp from 'mkdirp';
 import pathExists from 'path-exists';
 import simpleGit from 'simple-git';
 import slug from 'slug';
@@ -14,16 +14,6 @@ class MyGenerator extends Base {
     this.opts = {
       year: new Date().getFullYear()
     };
-    this.files = [
-      '.babelrc',
-      '.eslintrc.json',
-      '.gitignore',
-      'bower.json',
-      'gulpfile.babel.js',
-      'LICENSE',
-      'package.json',
-      'README.md'
-    ];
   }
 
   prompting() {
@@ -96,11 +86,49 @@ class MyGenerator extends Base {
       },
       // express app config and files
       app() {
+        this.fs.copy(
+          this.templatePath('src/app.js'),
+          this.destinationPath('src/app.js')
+        );
+        this.fs.copyTpl(
+          this.templatePath('src/app/controllers/_index.js'),
+          this.destinationPath('src/app/controllers/index.js'),
+          this.opts
+        );
+        this.fs.copy(
+          this.templatePath('src/app/controllers/extras.js'),
+          this.destinationPath('src/app/controllers/extras.js')
+        );
+        this.directory(
+          this.templatePath('src/app/models'),
+          this.destinationPath('src/app/models')
+        );
+        this.directory(
+          this.templatePath('src/app/views'),
+          this.destinationPath('src/app/views')
+        );
+      },
+      // remaining source files
+      src() {
+        this.directory(
+          this.templatePath('src/images'),
+          this.destinationPath('src/images')
+        );
+        this.directory(
+          this.templatePath('src/scripts'),
+          this.destinationPath('src/scripts')
+        );
+        this.directory(
+          this.templatePath('src/styles'),
+          this.destinationPath('src/styles')
+        );
+        mkdirp(path.join(this.destinationRoot(), 'src/files'));
+        mkdirp(path.join(this.destinationRoot(), 'src/fonts'));
       },
       // create local git and commit all files
       git() {
         this.fs.copyTpl(
-          this.templatePath('gitignore'),
+          this.templatePath('_gitignore'),
           this.destinationPath('.gitignore'),
           this.opts
         );
