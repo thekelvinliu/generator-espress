@@ -6,7 +6,7 @@ an **opinionated** yeoman generator that scaffolds a mvc webapp powered by expre
 - server via [express](http://expressjs.com/)
 - database via [mongodb](https://www.mongodb.org/) + [mongoose](http://mongoosejs.com/)
 - templating via [jade](http://jade-lang.com/)
-- [ECMAScript 6](http://es6-features.org)(es6) via [babel](https://babeljs.io/)
+- [es6](http://es6-features.org) via [babel](https://babeljs.io/)
 - linting via [eslint](http://eslint.org/)
 - css pre-processing via [libsass](https://github.com/sass/libsass)
 - build automation via [gulp](http://gulpjs.com/)
@@ -20,15 +20,7 @@ npm i -g yo gulp-cli bower generator-es6-express
 ```
 
 ### generating!
-once installed, simply do
-```
-yo es6-express [options]
-```
-this will walk you through scaffolding your next project!
-
-### options
-- `--no-bower`: scaffolds without [bower](http://bower.io/).
-- `--no-git`: scaffold without [git](https://git-scm.com)
+once installed, simply do `yo es6-express`, and you'll be on your way to building your next project!
 
 ### structure
 all of your source code goes in the `src` folder.
@@ -78,7 +70,7 @@ build
 - `gulp tasks` will show you all of the available tasks
 
 ## what's missing
-#### **tests**
+#### tests
 - while _incredibly_ important, tests are not inlucded in this generator
 - it's especially useful to be able to write your own tests, so I'm leaving this as an exercise for the reader 🙃
 - if you need help, [this](https://www.terlici.com/2015/09/21/node-express-controller-testing.html) is a decent place to start
