@@ -56,6 +56,7 @@ gulp.task('lint:test', lintTask(PATHS.test));
 const babelTask = (obj) =>
   () =>
     gulp.src(obj.src)
+      .pipe($.changed(obj.dest))
       .pipe($.babel())
       .pipe(gulp.dest(obj.dest))
       .pipe($.print(fp => `babel'd: ${fp}`))
@@ -67,7 +68,9 @@ gulp.task('babel:test', ['lint:test'], babelTask(PATHS.test));
 // move templates
 gulp.task('templates', () =>
   gulp.src([PATHS.templates.src])
+    .pipe($.changed(PATHS.templates.dest))
     .pipe(gulp.dest(PATHS.templates.dest))
+    .pipe($.print(fp => `template: ${fp}`))
 );
 
 // cleanup directory
