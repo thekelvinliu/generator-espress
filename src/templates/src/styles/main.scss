@@ -1,0 +1,19 @@
+// variables
+$font-stack: "Courier New", Courier, monospace;
+$base-color: rgba(189, 195, 199, 1);
+
+// semi-sensible defaults
+html {
+  font-size: 62.5%;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: $base-color;
+}
+
+body {
+  font-size: 1.4rem;
+  font-family: $font-stack;
+  padding: 3rem;
+}
