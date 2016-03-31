@@ -25,7 +25,8 @@ class MyGenerator extends Base {
     }, {
       type: 'input',
       name: 'githubName',
-      message: 'Enter your github username:'
+      message: 'Enter your github username:',
+      store: true
     }, {
       type: 'input',
       name: 'buildDir',
@@ -47,7 +48,7 @@ class MyGenerator extends Base {
   get writing() {
     return {
       babelrc() {
-        this.fs.copyTpl(
+        this.fs.copy(
           this.templatePath('babelrc'),
           this.destinationPath('.babelrc')
         );
@@ -63,10 +64,16 @@ class MyGenerator extends Base {
         );
       },
       eslintJson() {
-        this.fs.copyTpl(
+        this.fs.copy(
           this.templatePath('eslintrc.json'),
           this.destinationPath('.eslintrc.json')
         );
+      },
+      gitignore() {
+        this.fs.copy(
+          this.templatePath('gitignore'),
+          this.destinationPath('.gitignore')
+        )
       },
       packageJson() {
         this.fs.copyTpl(
