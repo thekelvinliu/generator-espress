@@ -27,7 +27,10 @@ const PATHS = {
 gulp.task('default', ['test']);
 
 // test code
-gulp.task('test', ['build']);
+gulp.task('test', ['build'], () =>
+  gulp.src(path.join(PATHS.test.dest, '*.js'))
+    .pipe($.print())
+);
 
 // watch code and automatically transpile
 gulp.task('watch', ['build'], () => {
