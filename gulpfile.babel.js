@@ -29,7 +29,7 @@ gulp.task('default', ['test']);
 // test code
 gulp.task('test', ['build'], () =>
   gulp.src(path.join(PATHS.test.dest, '*.js'))
-    .pipe($.print())
+    .pipe($.mocha())
 );
 
 // watch code and automatically transpile
