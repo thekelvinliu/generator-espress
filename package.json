@@ -10,6 +10,8 @@
   "author": "thekelvinliu",
   "main": "app/index.js",
   "scripts": {
+    "compile": "gulp build",
+    "prepublish": "npm run compile",
     "test": "gulp test"
   },
   "files": [
