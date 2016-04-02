@@ -34,6 +34,7 @@
     "mkdirp": "^0.5.1",
     "path-exists": "^2.1.0",
     "simple-git": "^1.31.0",
+    "slug": "^0.9.1",
     "yeoman-generator": "^0.22.5"
   },
   "devDependencies": {
@@ -51,7 +52,6 @@
     "gulp-mocha": "^2.2.0",
     "gulp-plumber": "^1.1.0",
     "gulp-print": "^2.0.1",
-    "slug": "^0.9.1",
     "yeoman-assert": "^2.1.2",
     "yeoman-test": "^1.1.0"
   }
