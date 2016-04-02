@@ -1,6 +1,8 @@
 'use strict';
 
 import path from 'path';
+import pathExists from 'path-exists';
+import chai from 'chai';
 import assert from 'yeoman-assert';
 import helpers from 'yeoman-test';
 
@@ -48,6 +50,8 @@ describe('allTests', () => {
         'src/styles/extras.scss',
         'src/styles/main.scss'
       ]);
+      chai.assert.equal(pathExists.sync('src/files'), true);
+      chai.assert.equal(pathExists.sync('src/fonts'), true);
     });
 
     it('files have no templating syntax', () => {
@@ -85,7 +89,7 @@ describe('allTests', () => {
   });
 
   describe('git', () => {
-    it('.git directory is created', () => {
+    it('directory has .git', () => {
       assert.file([
         '.git/HEAD',
         '.git/config',
