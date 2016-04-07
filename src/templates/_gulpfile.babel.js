@@ -102,7 +102,6 @@ gulp.task('build:server', ['transpile', 'views', 'ln']);
 gulp.task('images', () =>
   gulp.src(PATHS.images.src)
     .pipe($.changed(PATHS.images.dest))
-    .pipe($.plumber())
     .pipe($.imagemin({
       optimizationLevel: 5,
       progressive: true,
@@ -118,7 +117,12 @@ gulp.task('styles', () =>
     .pipe($.changed(PATHS.styles.dest, {
       extension: '.css'
     }))
-    .pipe($.plumber())
+    .pipe($.plumber({
+      errorHandler: function(err) {
+        $.util.log(err);
+        this.emit('end');
+      }
+    }))
     .pipe($.sourcemaps.init())
     .pipe($.sass())
     .pipe($.autoprefixer())
@@ -188,7 +192,6 @@ gulp.task('bower:css', () =>
 const lintTask = src =>
   () =>
     gulp.src(src)
-      .pipe($.plumber())
       .pipe($.eslint())
       .pipe($.eslint.formatEach())
       .pipe($.eslint.failAfterError());
