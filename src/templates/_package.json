@@ -48,6 +48,7 @@
     "gulp-sourcemaps": "^1.6.0",
     "gulp-task-listing": "^1.0.1",
     "gulp-uglify": "^1.5.3",
+    "gulp-util": "^3.0.7",
     "main-bower-files": "^2.11.1",
     "ttf2woff2": "^2.0.3",
     "vinyl-fs": "^2.4.2"
