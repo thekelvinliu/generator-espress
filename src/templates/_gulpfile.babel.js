@@ -70,7 +70,6 @@ gulp.task('default', ['serve']);
 gulp.task('serve', ['watch'], () =>
   $.nodemon({
     script: path.join(DEST, 'app.js'),
-    // ext: 'js',
     watch: path.join(DEST, '**/*.js'),
     ignore: path.join(DEST, 'static')
   })
@@ -143,7 +142,7 @@ gulp.task('scripts', ['lint:scripts'], () =>
 
 // copy files over to destination
 gulp.task('files', () =>
-  gulp.src([PATHS.files.src])
+  gulp.src(PATHS.files.src)
     .pipe($.changed(PATHS.files.dest))
     .pipe(gulp.dest(PATHS.files.dest))
     .pipe($.print(fp => `file: ${fp}`))
@@ -187,7 +186,7 @@ gulp.task('bower:css', () =>
 // returns a function that lints the files in src
 const lintTask = src =>
   () =>
-    gulp.src([src])
+    gulp.src(src)
       .pipe($.plumber())
       .pipe($.eslint())
       .pipe($.eslint.formatEach())
@@ -202,7 +201,7 @@ gulp.task('lint', [...LINT].map(el => `lint:${el}`).concat('lint:gulpfile'));
 // create transpile tasks for server scripts
 for (const task of TRANSPILE) {
   gulp.task(`transpile:${task}`, [`lint:${task}`], () =>
-    gulp.src([PATHS[task].src])
+    gulp.src(PATHS[task].src)
       .pipe($.changed(PATHS[task].dest))
       .pipe($.babel())
       .pipe(gulp.dest(PATHS[task].dest))
@@ -214,7 +213,7 @@ gulp.task('transpile', [...TRANSPILE].map(el => `transpile:${el}`));
 
 // copy views over to destination
 gulp.task('views', () =>
-  gulp.src([PATHS.views.src])
+  gulp.src(PATHS.views.src)
     .pipe($.changed(PATHS.views.dest))
     .pipe(gulp.dest(PATHS.views.dest))
     .pipe($.print(fp => `view: ${fp}`))
