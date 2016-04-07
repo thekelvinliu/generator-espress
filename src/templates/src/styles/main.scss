@@ -1,5 +1,8 @@
+// fonts
+@import url('/fonts/Raleway-Regular.css');
+
 // variables
-$font-stack: "Courier New", Courier, monospace;
+$font-stack: Raleway-Regular, "Courier New", Courier, monospace;
 $base-color: rgba(189, 195, 199, 1);
 
 // semi-sensible defaults

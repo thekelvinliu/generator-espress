@@ -76,4 +76,7 @@ build
 - if you need help, [this](https://www.terlici.com/2015/09/21/node-express-controller-testing.html) is a decent place to start
 
 ## notes
+- this generator was written with _my_ needs in mind; that's why it's **opinionated**
+- `gulp font` probably won't work out of the box for linux/windows users
+  - see [fontfacegen](https://github.com/agentk/fontfacegen)
 - this is my first yeoman generator, and suggestions are definitely welcome!

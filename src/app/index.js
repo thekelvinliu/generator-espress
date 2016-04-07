@@ -110,6 +110,11 @@ class MyGenerator extends Base {
       },
       // remaining source files
       src() {
+        mkdirp(path.join(this.destinationRoot(), 'src/files'));
+        this.directory(
+          this.templatePath('src/fonts'),
+          this.destinationPath('src/fonts')
+        );
         this.directory(
           this.templatePath('src/images'),
           this.destinationPath('src/images')
@@ -122,8 +127,6 @@ class MyGenerator extends Base {
           this.templatePath('src/styles'),
           this.destinationPath('src/styles')
         );
-        mkdirp(path.join(this.destinationRoot(), 'src/files'));
-        mkdirp(path.join(this.destinationRoot(), 'src/fonts'));
       },
       // create local git and commit all files
       git() {
