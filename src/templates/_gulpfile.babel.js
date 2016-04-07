@@ -157,8 +157,7 @@ gulp.task('fonts', () =>
   gulp.src(PATHS.fonts.src)
     .pipe($.changed(PATHS.fonts.dest))
     .pipe($.fontgen({
-      dest: PATHS.fonts.dest,
-      collate: true
+      dest: PATHS.fonts.dest
     }))
     .pipe($.print(fp => `font: ${fp}`))
 );
