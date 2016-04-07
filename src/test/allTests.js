@@ -44,6 +44,7 @@ describe('allTests', () => {
         'src/app/views/layout.jade',
         'src/app/views/movies.jade',
         'src/app.js',
+        'src/fonts/Raleway-Regular.ttf',
         'src/images/favicon.png',
         'src/scripts/fadeIn.js',
         'src/styles/error.scss',
@@ -51,7 +52,6 @@ describe('allTests', () => {
         'src/styles/main.scss'
       ]);
       chai.assert.equal(pathExists.sync('src/files'), true);
-      chai.assert.equal(pathExists.sync('src/fonts'), true);
     });
 
     it('files have no templating syntax', () => {
