@@ -13,5 +13,5 @@ block body
     ul.list
       each movie in movies
         li.movie
-          a(href='#{movie.url}')= movie.title + '(' + movie.year + ')'
+          a(href='#{movie.url}')= movie.title + ' (' + movie.year + ')'
           p= movie.text
