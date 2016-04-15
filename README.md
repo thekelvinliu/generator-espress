@@ -1,3 +1,4 @@
+![generator-es6-express](logo-01.png)
 # generator-es6-express
 an **opinionated** yeoman generator that scaffolds a mvc webapp powered by express
 
