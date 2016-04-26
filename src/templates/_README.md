@@ -1,2 +1,2 @@
 # <%= projectName %>
-<%= description %>
+<%- description %>
