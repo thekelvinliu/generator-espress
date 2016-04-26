@@ -4,8 +4,9 @@ import path from 'path';
 import del from 'del';
 import gulp from 'gulp';
 import plugins from 'gulp-load-plugins';
+import vfs from 'vinyl-fs';
 const $ = plugins({
-  pattern: ['gulp-*', 'vinyl-fs', 'main-bower-files']
+  pattern: ['gulp-*', 'main-bower-files']
 });
 
 // base directories, paths, etc.
@@ -224,10 +225,10 @@ gulp.task('views', () =>
 
 // symlink package.json and node_modules to destination
 gulp.task('ln', () =>
-  $.vinylFs.src(['package.json', 'node_modules'], {
+  vfs.src(['package.json', 'node_modules'], {
     followSymlinks: false
   })
-    .pipe($.vinylFs.symlink(DEST))
+    .pipe(vfs.symlink(DEST))
     .pipe($.print(fp => `symlink: ${fp}`))
 );
 
