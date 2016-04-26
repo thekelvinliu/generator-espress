@@ -1,11 +1,11 @@
 {
-  "name": "generator-es6-express",
+  "name": "generator-espress",
   "version": "0.1.4",
   "description": "an opinionated yeoman generator that scaffolds a mvc webapp powered by express",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/thekelvinliu/generator-es6-express.git"
+    "url": "git+https://github.com/thekelvinliu/generator-espress.git"
   },
   "author": "thekelvinliu",
   "main": "app/index.js",

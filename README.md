@@ -1,5 +1,5 @@
-![generator-es6-express](logo-01.png)
-# generator-es6-express
+![generator-espress](logo-01.png)
+# generator-espress
 an **opinionated** yeoman generator that scaffolds a mvc webapp powered by express
 
 ## what's included
@@ -17,11 +17,11 @@ an **opinionated** yeoman generator that scaffolds a mvc webapp powered by expre
 ### install
 simply run the following to install via [npm](https://www.npmjs.com/):
 ```
-npm i -g yo gulp-cli bower generator-es6-express
+npm i -g yo gulp-cli bower generator-espress
 ```
 
 ### generating!
-once installed, simply do `yo es6-express`, and you'll be on your way to building your next project!
+once installed, simply do `yo espress`, and you'll be on your way to building your next project!
 
 ### structure
 all of your source code goes in the `src` folder.
