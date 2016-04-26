@@ -1,10 +1,12 @@
 'use strict';
 
+import fs from 'fs';
 import path from 'path';
 import del from 'del';
+import mkdirp from 'mkdirp';
+import vfs from 'vinyl-fs';
 import gulp from 'gulp';
 import plugins from 'gulp-load-plugins';
-import vfs from 'vinyl-fs';
 const $ = plugins({
   pattern: ['gulp-*', 'main-bower-files']
 });
@@ -154,14 +156,50 @@ gulp.task('files', () =>
 );
 
 // generate webfonts and css from ttf or otf fonts
-gulp.task('fonts', () =>
+gulp.task('fonts', done => {
+  // eot
   gulp.src(PATHS.fonts.src)
     .pipe($.changed(PATHS.fonts.dest))
-    .pipe($.fontgen({
-      dest: PATHS.fonts.dest
+    .pipe($.ttf2eot())
+    .pipe(gulp.dest(PATHS.fonts.dest))
+    .pipe($.print(fp => `font: ${fp}`));
+  // woff
+  gulp.src(PATHS.fonts.src)
+    .pipe($.changed(PATHS.fonts.dest))
+    .pipe($.ttf2woff())
+    .pipe(gulp.dest(PATHS.fonts.dest))
+    .pipe($.print(fp => `font: ${fp}`));
+  // woff2
+  gulp.src(PATHS.fonts.src)
+    .pipe($.changed(PATHS.fonts.dest))
+    .pipe($.ttf2woff2())
+    .pipe(gulp.dest(PATHS.fonts.dest))
+    .pipe($.print(fp => `font: ${fp}`));
+  // css
+  gulp.src(PATHS.fonts.src)
+    .pipe($.changed(PATHS.fonts.dest))
+    .pipe($.tap(file => {
+      mkdirp(PATHS.fonts.dest, err => {
+        if (err) $.util.log(err);
+        const fname = path.basename(file.path, '.ttf');
+        const fp = path.join(PATHS.fonts.dest, `${fname}.css`);
+        const css = `@font-face {
+    font-family: "${fname}";
+    src: url("${fname}.eot");
+    src: url("${fname}.eot?#iefix") format("embedded-opentype"),
+         url("${fname}.woff2") format("woff2"),
+         url("${fname}.woff") format("woff"),
+         url("${fname}.ttf") format("truetype");
+    font-weight: 300;
+    font-style: normal;
+}`;
+        fs.writeFileSync(fp, css);
+      });
     }))
-    .pipe($.print(fp => `font: ${fp}`))
-);
+    .pipe(gulp.dest(PATHS.fonts.dest))
+    .pipe($.print(fp => `font: ${fp}`));
+    done();
+});
 
 // move bower files to destination directory
 gulp.task('bower', ['bower:js', 'bower:css']);
