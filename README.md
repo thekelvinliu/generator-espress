@@ -78,6 +78,7 @@ build
 
 ## notes
 - this generator was written with _my_ needs in mind; that's why it's **opinionated**
-- `gulp font` probably won't work out of the box for linux/windows users
-  - see [fontfacegen](https://github.com/agentk/fontfacegen)
+- i do most of my development on os x + [homebrew](http://brew.sh/) + [osx-jump-start](https://github.com/thekelvinliu/osx-jump-start)
+  - if you do too, then things _should_ go smoothly
+- cross-platform compatibility isn't guaranteed
 - this is my first yeoman generator, and suggestions are definitely welcome!
