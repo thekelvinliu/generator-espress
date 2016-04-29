@@ -49,10 +49,12 @@ app.use((req, res, next) => {
 });
 // general errors
 app.use((err, req, res, next) => {
-  res.status(err.status || 500);
+  const sc = err.status || 500;
+  res.status(sc);
   res.render('error', {
+    status: sc,
     message: err.message,
-    error: config.env === 'development' ? err : {}
+    stack: config.env === 'development' ? err.stack : ''
   });
 });
 
