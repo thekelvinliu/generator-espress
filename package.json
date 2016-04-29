@@ -1,7 +1,7 @@
 {
   "name": "generator-espress",
-  "version": "0.2.0",
-  "description": "an opinionated yeoman generator that scaffolds a mvc webapp powered by express",
+  "version": "0.2.1",
+  "description": "an opinionated yeoman generator that scaffolds a mvc express webapp completely in es6",
   "license": "MIT",
   "repository": {
     "type": "git",

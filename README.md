@@ -1,6 +1,6 @@
 ![generator-espress](logo-01.png)
 # generator-espress
-an **opinionated** yeoman generator that scaffolds a mvc webapp powered by express
+an **opinionated** yeoman generator that scaffolds a mvc express webapp completely in es6
 
 ## what's included
 - good old [node](https://nodejs.org/en/)
