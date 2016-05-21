@@ -1,6 +1,6 @@
 {
   "name": "generator-espress",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "an opinionated yeoman generator that scaffolds a mvc express webapp completely in es6",
   "license": "MIT",
   "repository": {
