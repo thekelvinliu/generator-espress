@@ -35,7 +35,7 @@ src
 │   ├── models          // mongoose models (es6)
 │   └── views           // jade templates (jade)
 ├── files               // any files that need to be hosted, e.g. pdfs, text files, etc.
-├── fonts               // ttf or otf fonts
+├── fonts               // ttf fonts
 ├── images              // source images
 ├── scripts             // client-side javascript (es6)
 └── styles              // style sheets (sass)
@@ -51,7 +51,7 @@ build
 └── static
     ├── css             // actual css
     ├── files           // same files as source
-    ├── fonts           // webfonts (eot, svg, ttf, woff, woff2) and a font-face stylesheet
+    ├── fonts           // webfonts (eot, ttf, woff, woff2) and a font-face stylesheet
     ├── img             // optimized images
     └── js              // transpiled client-side code
 ```

@@ -33,7 +33,7 @@ const PATHS = {
     dest: path.join(DEST, 'static/files')
   },
   fonts: {
-    src: path.join(SRC, 'fonts/**/*.{otf,ttf}'),
+    src: path.join(SRC, 'fonts/**/*.ttf'),
     dest: path.join(DEST, 'static/fonts')
   },
   // server
@@ -155,7 +155,7 @@ gulp.task('files', () =>
     .pipe($.print(fp => `file: ${fp}`))
 );
 
-// generate webfonts and css from ttf or otf fonts
+// generate webfonts and css from ttf fonts
 gulp.task('fonts', done => {
   // eot
   gulp.src(PATHS.fonts.src)
