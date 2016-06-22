@@ -1,8 +1,9 @@
 'use strict';
 
 import path from 'path';
-import pathExists from 'path-exists';
 import chai from 'chai';
+import escape from 'escape-html';
+import pathExists from 'path-exists';
 import assert from 'yeoman-assert';
 import helpers from 'yeoman-test';
 
@@ -62,7 +63,8 @@ describe('allTests', () => {
         ['LICENSE', '<%= '],
         ['package.json', '<%= '],
         ['README.md', '<%= '],
-        ['src/app/controllers/index.js', '<%= ']
+        ['src/app/controllers/index.js', '<%= '],
+        ['src/app/views/layout.jade', '<%= ']
       ]);
     });
 
@@ -83,7 +85,8 @@ describe('allTests', () => {
         ['LICENSE', OPTS.githubName],
         ['README.md', `# ${NAME}`],
         ['README.md', OPTS.description],
-        ['src/app/controllers/index.js', `title: '${NAME}'`]
+        ['src/app/controllers/index.js', `title: '${NAME}'`],
+        ['src/app/views/layout.jade', `content='${escape(OPTS.description)}'`]
       ]);
     });
   });
