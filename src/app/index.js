@@ -103,9 +103,26 @@ class MyGenerator extends Base {
           this.templatePath('src/app/models'),
           this.destinationPath('src/app/models')
         );
-        this.directory(
-          this.templatePath('src/app/views'),
-          this.destinationPath('src/app/views')
+        this.fs.copyTpl(
+          this.templatePath('src/app/views/_layout.jade'),
+          this.destinationPath('src/app/views/layout.jade'),
+          this.opts
+        );
+        this.fs.copy(
+          this.templatePath('src/app/views/error.jade'),
+          this.destinationPath('src/app/views/error.jade')
+        );
+        this.fs.copy(
+          this.templatePath('src/app/views/extras.jade'),
+          this.destinationPath('src/app/views/extras.jade')
+        );
+        this.fs.copy(
+          this.templatePath('src/app/views/index.jade'),
+          this.destinationPath('src/app/views/index.jade')
+        );
+        this.fs.copy(
+          this.templatePath('src/app/views/movies.jade'),
+          this.destinationPath('src/app/views/movies.jade')
         );
       },
       // remaining source files
