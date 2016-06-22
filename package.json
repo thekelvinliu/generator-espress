@@ -35,7 +35,7 @@
     "path-exists": "^3.0.0",
     "simple-git": "^1.38.0",
     "slug": "^0.9.1",
-    "yeoman-generator": "^0.23.4"
+    "yeoman-generator": "^0.22.5"
   },
   "devDependencies": {
     "babel-core": "^6.10.4",
