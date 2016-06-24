@@ -1,12 +1,16 @@
 ![generator-espress](logo-01.png)
+
 # generator-espress
 an **opinionated** yeoman generator that scaffolds a mvc express webapp completely in es6
+
+[![Build Status](https://travis-ci.org/thekelvinliu/generator-espress.svg?branch=master)](https://travis-ci.org/thekelvinliu/generator-espress)
 
 ## what's included
 - good old [node](https://nodejs.org/en/)
 - server via [express](http://expressjs.com/)
 - database via [mongodb](https://www.mongodb.org/) + [mongoose](http://mongoosejs.com/)
 - templating via [jade](http://jade-lang.com/)
+- logging via [winston](https://github.com/winstonjs/winston)
 - [es6](http://es6-features.org) via [babel](https://babeljs.io/)
 - linting via [eslint](http://eslint.org/)
 - css pre-processing via [libsass](https://github.com/sass/libsass)
@@ -29,9 +33,11 @@ anything javascript can (and should) be written in es6.
 the strucutre is as follows:
 ```
 src
-├── app.js              // main express configuration (es6)
+├── app.js              // express app configuration (es6)
+├── config.js           // environment configuration (es6)
 ├── app
 │   ├── controllers     // express routes (es6)
+│   ├── helpers         // modules, middlewares (es6)
 │   ├── models          // mongoose models (es6)
 │   └── views           // jade templates (jade)
 ├── files               // any files that need to be hosted, e.g. pdfs, text files, etc.
@@ -44,8 +50,10 @@ running `gulp build` will produce a new directory (`build` by default) with a sl
 ```
 build
 ├── app.js              // transpiled express configuration
+├── config.js           // transpiled environment configuration
 ├── app
 │   ├── controllers     // transpiled express routes
+│   ├── helpers         // transpiled modules, middlewares
 │   ├── models          // transpiled mongoose models
 │   └── views           // same files as source
 └── static

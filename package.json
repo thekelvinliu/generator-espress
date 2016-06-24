@@ -28,6 +28,7 @@
     "mongoose",
     "node",
     "sass",
+    "winston",
     "yeoman-generator"
   ],
   "dependencies": {
