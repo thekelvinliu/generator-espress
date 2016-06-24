@@ -64,6 +64,21 @@ class MyGenerator extends Base {
           this.destinationPath('.eslintrc.json')
         );
         this.fs.copyTpl(
+          this.templatePath('_gitignore'),
+          this.destinationPath('.gitignore'),
+          this.opts
+        );
+        this.fs.copyTpl(
+          this.templatePath('_LICENSE'),
+          this.destinationPath('LICENSE'),
+          this.opts
+        );
+        this.fs.copyTpl(
+          this.templatePath('_README.md'),
+          this.destinationPath('README.md'),
+          this.opts
+        );
+        this.fs.copyTpl(
           this.templatePath('_bower.json'),
           this.destinationPath('bower.json'),
           this.opts
@@ -74,11 +89,6 @@ class MyGenerator extends Base {
           this.opts
         );
         this.fs.copyTpl(
-          this.templatePath('_LICENSE'),
-          this.destinationPath('LICENSE'),
-          this.opts
-        );
-        this.fs.copyTpl(
           this.templatePath('_package.json'),
           this.destinationPath('package.json'),
           this.opts
@@ -86,10 +96,16 @@ class MyGenerator extends Base {
       },
       // express app config and files
       app() {
+        // app.js and config.js
         this.fs.copy(
           this.templatePath('src/app.js'),
           this.destinationPath('src/app.js')
         );
+        this.fs.copy(
+          this.templatePath('src/config.js'),
+          this.destinationPath('src/config.js')
+        );
+        // controllers
         this.fs.copyTpl(
           this.templatePath('src/app/controllers/_index.js'),
           this.destinationPath('src/app/controllers/index.js'),
@@ -99,13 +115,20 @@ class MyGenerator extends Base {
           this.templatePath('src/app/controllers/extras.js'),
           this.destinationPath('src/app/controllers/extras.js')
         );
+        // helpers
+        this.directory(
+          this.templatePath('src/app/helpers'),
+          this.destinationPath('src/app/helpers')
+        );
+        // models
         this.directory(
           this.templatePath('src/app/models'),
           this.destinationPath('src/app/models')
         );
+        // views
         this.fs.copyTpl(
-          this.templatePath('src/app/views/_layout.jade'),
-          this.destinationPath('src/app/views/layout.jade'),
+          this.templatePath('src/app/views/layout/_base.jade'),
+          this.destinationPath('src/app/views/layout/base.jade'),
           this.opts
         );
         this.fs.copy(
@@ -147,16 +170,6 @@ class MyGenerator extends Base {
       },
       // create local git and commit all files
       git() {
-        this.fs.copyTpl(
-          this.templatePath('_gitignore'),
-          this.destinationPath('.gitignore'),
-          this.opts
-        );
-        this.fs.copyTpl(
-          this.templatePath('_README.md'),
-          this.destinationPath('README.md'),
-          this.opts
-        );
         this.git
           .init()
           .add('.')
