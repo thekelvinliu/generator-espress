@@ -3,10 +3,10 @@
 import fs from 'fs';
 import path from 'path';
 import del from 'del';
-import mkdirp from 'mkdirp';
-import vfs from 'vinyl-fs';
 import gulp from 'gulp';
 import plugins from 'gulp-load-plugins';
+import mkdirp from 'mkdirp';
+import vfs from 'vinyl-fs';
 const $ = plugins({
   pattern: ['gulp-*', 'main-bower-files']
 });
@@ -41,6 +41,10 @@ const PATHS = {
     src: path.join(SRC, 'app.js'),
     dest: DEST
   },
+  config: {
+    src: path.join(SRC, 'config.js'),
+    dest: DEST
+  },
   models: {
     src: path.join(SRC, 'app/models/**/*.js'),
     dest: path.join(DEST, 'app/models')
@@ -52,6 +56,10 @@ const PATHS = {
   controllers: {
     src: path.join(SRC, 'app/controllers/**/*.js'),
     dest: path.join(DEST, 'app/controllers')
+  },
+  helpers: {
+    src: path.join(SRC, 'app/helpers/**/*.js'),
+    dest: path.join(DEST, 'app/helpers')
   }
 };
 
@@ -105,11 +113,7 @@ gulp.task('build:server', ['transpile', 'views', 'ln']);
 gulp.task('images', () =>
   gulp.src(PATHS.images.src)
     .pipe($.changed(PATHS.images.dest))
-    .pipe($.imagemin({
-      optimizationLevel: 5,
-      progressive: true,
-      interlaced: true
-    }))
+    .pipe($.imagemin())
     .pipe(gulp.dest(PATHS.images.dest))
     .pipe($.print(fp => `image: ${fp}`))
 );
