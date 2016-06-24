@@ -1,25 +1,17 @@
 'use strict';
 
+// built-in
 import path from 'path';
+// external
 import bodyParser from 'body-parser';
 import compress from 'compression';
 import cookieParser from 'cookie-parser';
 import express from 'express';
-import favicon from 'serve-favicon';
 import helmet from 'helmet';
 import mongoose from 'mongoose';
-
-// BASIC CONFIG
-const config = {
-  // address of mongodb
-  db: process.env.MONGOURI || 'mongodb://localhost:27017/test',
-  // environment
-  env: process.env.NODE_ENV || 'development',
-  // port on which to listen
-  port: 5000,
-  // path to root directory of this app
-  root: path.normalize(__dirname)
-};
+import favicon from 'serve-favicon';
+// local
+import config from './config';
 
 // EXPRESS SET-UP
 // create app
