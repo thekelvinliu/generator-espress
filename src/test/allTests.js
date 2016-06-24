@@ -1,8 +1,9 @@
 'use strict';
 
 import path from 'path';
-import pathExists from 'path-exists';
 import chai from 'chai';
+import escape from 'escape-html';
+import pathExists from 'path-exists';
 import assert from 'yeoman-assert';
 import helpers from 'yeoman-test';
 
@@ -31,19 +32,23 @@ describe('allTests', () => {
         '.babelrc',
         '.eslintrc.json',
         '.gitignore',
+        'LICENSE',
+        'README.md',
         'bower.json',
         'gulpfile.babel.js',
         'package.json',
+        'src/app.js',
+        'src/config.js',
         'src/app/controllers/index.js',
         'src/app/controllers/extras.js',
+        'src/app/helpers/logger.js',
         'src/app/models/index.js',
         'src/app/models/movie.js',
         'src/app/views/error.jade',
         'src/app/views/extras.jade',
         'src/app/views/index.jade',
-        'src/app/views/layout.jade',
         'src/app/views/movies.jade',
-        'src/app.js',
+        'src/app/views/layout/base.jade',
         'src/fonts/Raleway-Regular.ttf',
         'src/images/favicon.png',
         'src/scripts/fadeIn.js',
@@ -53,8 +58,10 @@ describe('allTests', () => {
       ]);
       chai.assert.equal(pathExists.sync('src/files'), true);
     });
+  });
 
-    it('files have no templating syntax', () => {
+  describe('files', () => {
+    it('have no templating syntax', () => {
       assert.noFileContent([
         ['.gitignore', '<%= '],
         ['bower.json', '<%= '],
@@ -62,29 +69,35 @@ describe('allTests', () => {
         ['LICENSE', '<%= '],
         ['package.json', '<%= '],
         ['README.md', '<%= '],
-        ['src/app/controllers/index.js', '<%= ']
+        ['README.md', '<%- '],
+        ['src/app/controllers/index.js', '<%= '],
+        ['src/app/views/layout/base.jade', '<%= ']
       ]);
     });
 
-    it('correctly templates files', () => {
-      assert.jsonFileContent('bower.json', {
-        name: NAME,
-        description: OPTS.description
-      });
-      assert.jsonFileContent('package.json', {
-        name: NAME,
-        description: OPTS.description,
-        author: OPTS.githubName,
-        repository: `${OPTS.githubName}/${NAME}`
-      });
+    it('are correctly templated', () => {
       assert.fileContent([
         ['.gitignore', OPTS.buildDir],
         ['gulpfile.babel.js', `const DEST = '${OPTS.buildDir}';`],
         ['LICENSE', OPTS.githubName],
         ['README.md', `# ${NAME}`],
         ['README.md', OPTS.description],
-        ['src/app/controllers/index.js', `title: '${NAME}'`]
+        ['src/app/controllers/index.js', `title: '${NAME}'`],
+        [
+          'src/app/views/layout/base.jade',
+          `content='${escape(OPTS.description)}'`
+        ]
       ]);
+      assert.jsonFileContent('bower.json', {
+        name: NAME,
+        description: escape(OPTS.description)
+      });
+      assert.jsonFileContent('package.json', {
+        name: NAME,
+        description: escape(OPTS.description),
+        author: OPTS.githubName,
+        repository: `${OPTS.githubName}/${NAME}`
+      });
     });
   });
 

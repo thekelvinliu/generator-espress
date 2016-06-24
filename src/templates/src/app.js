@@ -1,25 +1,20 @@
 'use strict';
 
+// built-in
 import path from 'path';
+// external
 import bodyParser from 'body-parser';
 import compress from 'compression';
 import cookieParser from 'cookie-parser';
 import express from 'express';
-import favicon from 'serve-favicon';
 import helmet from 'helmet';
 import mongoose from 'mongoose';
-
-// BASIC CONFIG
-const config = {
-  // address of mongodb
-  db: process.env.MONGOURI || 'mongodb://localhost:27017/test',
-  // environment
-  env: process.env.NODE_ENV || 'development',
-  // port on which to listen
-  port: 5000,
-  // path to root directory of this app
-  root: path.normalize(__dirname)
-};
+import favicon from 'serve-favicon';
+// local
+import './app/models'; // this MUST be done before controllers
+import config from './config';
+import controllers from './app/controllers';
+import logger from './app/helpers/logger';
 
 // EXPRESS SET-UP
 // create app
@@ -37,10 +32,8 @@ app.use(compress());
 app.use(cookieParser());
 app.use(favicon(path.join(config.root, 'static/img/favicon.png')));
 app.use(helmet());
-// load all models
-require(path.join(config.root, 'app/models'));
-// load all controllers
-app.use('/', require(path.join(config.root, 'app/controllers')));
+// set all controllers
+app.use('/', controllers);
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
   const err = new Error('Not Found');
@@ -59,7 +52,13 @@ app.use((err, req, res, next) => {
 });
 
 // MONGOOSE SET-UP
-mongoose.connect(config.db);
+// warn if MONGOURI is being used and pass is undefined
+if (config.db === process.env.MONGOURI && !config.pass)
+  logger.warn(`bad credientials for ${config.db} -- check env.`);
+mongoose.connect(config.db, {
+  user: config.user,
+  pass: config.pass
+});
 const db = mongoose.connection;
 db.on('error', () => {
   throw new Error(`unable to connect to database at ${config.db}`);
@@ -67,10 +66,10 @@ db.on('error', () => {
 
 // START AND STOP
 const server = app.listen(config.port, () => {
-  console.log(`listening on port ${config.port}`);
+  logger.info(`listening on port ${config.port}`);
 });
 process.on('SIGINT', () => {
-  console.log('\nshutting down!');
+  logger.info('shutting down!');
   db.close();
   server.close();
   process.exit();

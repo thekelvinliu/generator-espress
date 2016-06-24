@@ -2,7 +2,8 @@
 @import url('/fonts/Raleway-Regular.css');
 
 // variables
-$font-stack: Raleway-Regular, "Courier New", Courier, monospace;
+$font-fancy: Raleway-Regular;
+$font-base: "Courier New", Courier, monospace;
 $base-color: rgba(189, 195, 199, 1);
 
 // semi-sensible defaults
@@ -17,6 +18,10 @@ html {
 
 body {
   font-size: 1.4rem;
-  font-family: $font-stack;
+  font-family: $font-base;
   padding: 3rem;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: $font-fancy;
 }

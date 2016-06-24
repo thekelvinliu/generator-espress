@@ -1,27 +1,23 @@
 'use strict';
 
 import path from 'path';
-import express from 'express';
+import { Router } from 'express';
 
 // create router and set routes
-const router = express.Router();
-router.get('/', (req, res, next) => {
-  res.render('extras', {
-    message: 'welcome to extras!',
-    base: true
-  });
-});
-router.get('/:message', (req, res, next) => {
-  if (req.params.hasOwnProperty('message')) {
-    res.render('extras', {
+const router = Router();
+router.get('/', (req, res, next) => res.render('extras', {
+  message: 'welcome to extras!',
+  base: true
+}));
+router.get('/:message', (req, res, next) =>
+  (!req.params.hasOwnProperty('message'))
+    ? res.status(404).end()
+    : res.render('extras', {
       message: `welcome to extras!
-        you currently are at ${path.join('extras', req.params.message)}`,
+        you are currently at ${path.join('extras', req.params.message)}`,
       base: false
-    });
-  } else {
-    res.status(404);
-  }
-});
+    })
+);
 
 // export router
-module.exports = router;
+export default router;
