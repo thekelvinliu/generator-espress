@@ -130,25 +130,25 @@ class MyGenerator extends Base {
         );
         // views
         this.fs.copyTpl(
-          this.templatePath('src/app/views/layout/_base.jade'),
-          this.destinationPath('src/app/views/layout/base.jade'),
+          this.templatePath('src/app/views/layout/_base.pug'),
+          this.destinationPath('src/app/views/layout/base.pug'),
           this.opts
         );
         this.fs.copy(
-          this.templatePath('src/app/views/error.jade'),
-          this.destinationPath('src/app/views/error.jade')
+          this.templatePath('src/app/views/error.pug'),
+          this.destinationPath('src/app/views/error.pug')
         );
         this.fs.copy(
-          this.templatePath('src/app/views/extras.jade'),
-          this.destinationPath('src/app/views/extras.jade')
+          this.templatePath('src/app/views/extras.pug'),
+          this.destinationPath('src/app/views/extras.pug')
         );
         this.fs.copy(
-          this.templatePath('src/app/views/index.jade'),
-          this.destinationPath('src/app/views/index.jade')
+          this.templatePath('src/app/views/index.pug'),
+          this.destinationPath('src/app/views/index.pug')
         );
         this.fs.copy(
-          this.templatePath('src/app/views/movies.jade'),
-          this.destinationPath('src/app/views/movies.jade')
+          this.templatePath('src/app/views/movies.pug'),
+          this.destinationPath('src/app/views/movies.pug')
         );
       },
       // remaining source files

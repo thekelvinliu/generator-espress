@@ -44,11 +44,11 @@ describe('allTests', () => {
         'src/app/helpers/logger.js',
         'src/app/models/index.js',
         'src/app/models/movie.js',
-        'src/app/views/error.jade',
-        'src/app/views/extras.jade',
-        'src/app/views/index.jade',
-        'src/app/views/movies.jade',
-        'src/app/views/layout/base.jade',
+        'src/app/views/error.pug',
+        'src/app/views/extras.pug',
+        'src/app/views/index.pug',
+        'src/app/views/movies.pug',
+        'src/app/views/layout/base.pug',
         'src/fonts/Raleway-Regular.ttf',
         'src/images/favicon.png',
         'src/scripts/fadeIn.js',
@@ -71,7 +71,7 @@ describe('allTests', () => {
         ['README.md', '<%= '],
         ['README.md', '<%- '],
         ['src/app/controllers/index.js', '<%= '],
-        ['src/app/views/layout/base.jade', '<%= ']
+        ['src/app/views/layout/base.pug', '<%= ']
       ]);
     });
 
@@ -84,7 +84,7 @@ describe('allTests', () => {
         ['README.md', OPTS.description],
         ['src/app/controllers/index.js', `title: '${NAME}'`],
         [
-          'src/app/views/layout/base.jade',
+          'src/app/views/layout/base.pug',
           `content='${escape(OPTS.description)}'`
         ]
       ]);
