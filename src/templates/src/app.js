@@ -3,6 +3,7 @@
 // built-in
 import path from 'path';
 // external
+import bluebird from 'bluebird';
 import bodyParser from 'body-parser';
 import compress from 'compression';
 import cookieParser from 'cookie-parser';
@@ -59,6 +60,9 @@ mongoose.connect(config.db, {
   user: config.user,
   pass: config.pass
 });
+// use bluebird promises
+mongoose.Promise = bluebird;
+// create the connection
 const db = mongoose.connection;
 db.on('error', () => {
   throw new Error(`unable to connect to database at ${config.db}`);
