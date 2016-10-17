@@ -1,6 +1,7 @@
 'use strict';
 
 import path from 'path';
+import chalk from 'chalk';
 import { Base } from 'yeoman-generator';
 import mkdirp from 'mkdirp';
 import pathExists from 'path-exists';
@@ -41,8 +42,10 @@ class MyGenerator extends Base {
     this.prompt(prompts, res => {
       this.opts.projectName = slug(res.projectName);
       const dir = path.join('.', this.opts.projectName);
-      if (!pathExists.sync(dir)) this.destinationRoot(dir);
-      else this.env.error(`the directory '${this.opts.projectName}' already exists!`);
+      if (!pathExists.sync(dir))
+        this.destinationRoot(dir);
+      else
+        this.env.error(`the directory '${this.opts.projectName}' already exists!`);
       this.git = simpleGit(this.destinationRoot());
       this.opts.description = res.description;
       this.opts.githubName = res.githubName;
@@ -179,11 +182,21 @@ class MyGenerator extends Base {
   }
 
   install() {
-    this.installDependencies();
+    // don't actually install dependencies
+    // this.installDependencies();
+    this.log(
+      [
+        'please run',
+        chalk.yellow.bold('yarn install'),
+        'or',
+        chalk.yellow.bold('npm install'),
+        'to install project dependencies.'
+      ].join(' ')
+    );
   }
 
   end() {
-    this.log(`'${this.opts.projectName}' is all set up and ready to go!`);
+    this.log(`${chalk.green.bold(this.opts.projectName)} is all set up!`);
   }
 }
 
