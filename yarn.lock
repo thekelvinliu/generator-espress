@@ -3861,7 +3861,7 @@ yeoman-generator@^0.23.0:
     yeoman-test "^1.0.0"
     yeoman-welcome "^1.0.0"
 
-yeoman-test@^1.0.0, yeoman-test@^1.4.0:
+yeoman-test@^1.0.0, yeoman-test@^1.5.1:
   version "1.5.1"
   resolved "https://registry.yarnpkg.com/yeoman-test/-/yeoman-test-1.5.1.tgz#94578f77bd8b9a0cc1419d2776d1e829333cdc10"
   dependencies:
