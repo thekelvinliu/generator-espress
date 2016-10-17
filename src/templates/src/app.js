@@ -20,8 +20,8 @@ import logger from './app/helpers/logger';
 // EXPRESS SET-UP
 // create app
 const app = express();
-// use jade and set views and static directories
-app.set('view engine', 'jade');
+// use pug and set views and static directories
+app.set('view engine', 'pug');
 app.set('views', path.join(config.root, 'app/views'));
 app.use(express.static(path.join(config.root, 'static')));
 //add middlewares

@@ -18,8 +18,8 @@
     "cookie-parser": "^1.4.3",
     "express": "^4.14.0",
     "helmet": "^2.3.0",
-    "jade": "^1.11.0",
     "mongoose": "^4.6.4",
+    "pug": "^2.0.0-beta6",
     "serve-favicon": "^2.3.0",
     "winston": "^2.2.0"
   },
